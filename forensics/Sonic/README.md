@@ -2,7 +2,8 @@
 
 ## Description
 We intercepted a strange audio transmission. Our audio analysts say it's not music, not speech, and definitely not random noise. Can you figure out what it is?
-## Step 1 – Basic file inspection
+## Analysis
+### Basic file inspection
 
 First, inspect the audio file:
 
@@ -42,7 +43,7 @@ So the “audio” isn’t voice or music; it’s a **discrete digital signal** 
 
 ---
 
-## Step 2 – Finding the preamble
+### Finding the preamble
 
 Check where the middle value `2700` appears:
 
@@ -66,7 +67,7 @@ samples2 = samples[200:]
 
 ---
 
-## Step 3 – Guessing the symbol length
+### Guessing the symbol length
 
 A common trick is to use a nice round time unit like **10 ms** per symbol.
 
@@ -96,7 +97,7 @@ So each block of 441 samples is one **symbol**.
 
 ---
 
-## Step 4 – Converting symbols to bits
+### Converting symbols to bits
 
 For each 441-sample block, we can compute its average value and use the **sign** to determine a bit:
 
@@ -120,7 +121,7 @@ So now we have a **729‑bit sequence**.
 
 ---
 
-## Step 5 – Bits → 2D grid
+### Bits → 2D grid
 
 729 factors as:
 
@@ -157,7 +158,7 @@ After inversion, we can see a quiet border and a structured pattern in the cente
 
 ---
 
-## Step 6 – Extracting the QR core
+### Extracting the QR core
 
 QR codes come in specific sizes. For version *v*:
 
@@ -194,7 +195,7 @@ So this is our QR code raster.
 
 ---
 
-## Step 7 – Rendering the QR as an image
+### Rendering the QR as an image
 
 Next, we render the `core` grid into an actual image (black / white pixels), scaled up to make scanning easy.
 
