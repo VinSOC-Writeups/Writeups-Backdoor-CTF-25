@@ -6,14 +6,14 @@ Everyone keeps telling me to worry about Wiener's attack, but they just don't un
 
 Đề bài cung cấp một đoạn code tạo khóa RSA với một lỗ hổng nghiêm trọng trong việc tạo tham số $d_p$ (CRT exponent).
 
-# Code bị lỗi:
+### Code bị lỗi:
 ```python
 # Lỗ hổng nằm ở đây:
 dp_smart = getPrime(16)
 e = inverse(dp_smart, p-1)
 ```
 
-# Điểm yếu:
+### Điểm yếu:
 Trong RSA chuẩn CRT (Chinese Remainder Theorem), $d_p$ được tính bằng:
 $$d_p \equiv d \pmod{p-1} \equiv e^{-1} \pmod{p-1}$$
 
